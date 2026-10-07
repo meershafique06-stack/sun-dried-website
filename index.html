@@ -8,22 +8,25 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* BACKGROUND BILKUL TRANSPARENT (Koi white color nahi) */
+        /* BODY BHI CARD KA HI COLOR LE GA - Koi white jagah nahi bachegi */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: transparent; 
+            background-color: #2d4a22; /* Card ka hi color */
             height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            width: 100vw;
+            overflow: hidden;
+            transition: background-color 0.8s;
         }
         
+        /* CARD AB PURI SCREEN COVER KARE GA */
         .card { 
-            width: 900px; max-width: 95vw; height: 550px; 
+            width: 100vw; 
+            height: 100vh; 
             background-color: #2d4a22; 
-            border-radius: 30px; padding: 40px; 
-            display: flex; flex-direction: column; position: relative; 
-            box-shadow: 0 40px 80px rgba(0,0,0,0.3); 
+            padding: 40px; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
             transition: background-color 0.8s; 
             overflow: hidden;
         }
@@ -36,7 +39,7 @@
         .tab { padding: 6px 16px; border-radius: 16px; font-size: 0.75rem; font-weight: 600; color: #fff; cursor: pointer; transition: 0.3s; }
         .tab.active { background: #fff; color: #000; }
         
-        .content { display: flex; flex: 1; position: relative; }
+        .content { display: flex; flex: 1; position: relative; align-items: center; }
         .info-box { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 20px; color: #fff; position: relative; z-index: 20; }
         .info-box h1 { font-family: 'Playfair Display', serif; font-size: 3rem; line-height: 1.1; margin-bottom: 10px; }
         .price-row { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 15px; }
@@ -133,13 +136,17 @@
         const bgText = document.getElementById('bgText');
         const packet = document.getElementById('packet');
         const card = document.getElementById('mainCard');
+        const body = document.body;
         const fruits = document.querySelectorAll('.fruit');
         const thumbs = document.querySelectorAll('.thumb img');
         const activeThumb = document.querySelectorAll('.thumb');
 
         function update() {
             const s = slides[i];
-            card.style.backgroundColor = s.cardColor; 
+            // Body aur Card DONO ka color ek sath change hoga
+            body.style.backgroundColor = s.cardColor;
+            card.style.backgroundColor = s.cardColor;
+            
             document.querySelector('.logo span').style.color = s.accent;
             document.querySelectorAll('.arrow-btn, .add-btn').forEach(b => b.style.background = s.accent);
             activeThumb.forEach(t => t.style.borderColor = s.accent);
